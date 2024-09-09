@@ -412,26 +412,26 @@ contains
             call fs%get_dmomdt(resU,resV,resW)
 
             ! Add rotor disk momentum source terms
-            ! call rd%calculateForce(rho,Ui,Vi,Wi)    ! Get volumetric force
-            ! resU=resU+rd%forceX
+            call rd%calculateForce(rho,Ui,Vi,Wi)    ! Get volumetric force
+            resU=resU+rd%forceX
             ! resV=resV+rd%forceY
             ! resW=resW+rd%forceZ
             
             ! Explicit Momentum source term
-            index = cfg%get_ijk_global(rd%center,[0,0,0])
-            do k=fs%cfg%kmin_,fs%cfg%kmax_
-               do j=fs%cfg%jmin_,fs%cfg%jmax_
-                  do i=fs%cfg%imin_,fs%cfg%imax_
+            ! index = cfg%get_ijk_global(rd%center,[0,0,0])
+            ! do k=fs%cfg%kmin_,fs%cfg%kmax_
+            !    do j=fs%cfg%jmin_,fs%cfg%jmax_
+            !       do i=fs%cfg%imin_,fs%cfg%imax_
 
-                     if (i == index(1)) then
-                        if ((cfg%ym(j).le.(rd%center(2)+rd%maxR)) .and. (cfg%ym(j).ge.(rd%center(2)-rd%maxR))) then
-                              resU(i,j,k) = resU(i,j,k) + 100.0_WP
-                        end if
-                     end if
+            !          if (i == index(1)) then
+            !             if ((cfg%ym(j).le.(rd%center(2)+rd%maxR)) .and. (cfg%ym(j).ge.(rd%center(2)-rd%maxR))) then
+            !                   resU(i,j,k) = resU(i,j,k) + 100.0_WP
+            !             end if
+            !          end if
                      
-                  end do
-               end do
-            end do
+            !       end do
+            !    end do
+            ! end do
 
 
             ! Assemble explicit residual

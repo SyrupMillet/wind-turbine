@@ -15,22 +15,23 @@ Density :             1.29
 
 # Rotor Disk properties
 # Blade
-Number of radical points : 2
-Blade radius : 0.1 0.5
-Blade twists : 30.0 30.0
-Blade Chords : 0.02 0.02
+Number of radical points : 6
+Blade radius : 0.0 0.1 0.2 0.3 0.4 0.5
+# Blade twists : 65 35 25 16 10 10
+Blade twists : 25 25 25 25 25 25
+Blade Chords : 0.05 0.05 0.05 0.05 0.05 0.05
 Number of azimuthal points : 9
 Blade AoA : -180 -135 -90 -45 0 45 90 135 180
 Blade Cd : 0 1.0 1.25 1.0 0 1.0 1.25 1.0 0
 Blade Cl : 0 1.0 0 -1.0 0 1.0 0 -1.0 0
 # Rotor Disk
 Rotor Disk number of blades : 4
-Rotor Disk min radius : 0.1
+Rotor Disk min radius : 0.0
 Rotor Disk max radius : 0.5
 Rotor Disk center : 2.0 0.0 0.0
 Rotor Disk axis : 1.0 0.0 0.0
 Rotor Disk reference direction : 0.0 1.0 0.0
-Rotor Disk angular velocity : 30      # rpm
+Rotor Disk angular velocity : 480      # rpm
 
 # Time integration
 Max timestep size : 1e-3
