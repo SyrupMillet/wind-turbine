@@ -1,0 +1,938 @@
+Partitioned cartesian grid [channel] on 8 processes
+ >   overlap = 1
+ >      size = 120x40x40
+ >    decomp = 8x1x1
+ >    extent = [ 0.00000E+00, 3.00000E+00]x[-5.00000E-01, 5.00000E-01]x[-5.00000E-01, 5.00000E-01]
+ >   uniform = TxTxT
+ >  periodic = FxFxF
+ >    volume =  3.00000E+00
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 1/2147483647
+ >   t/  tmax =  1.00000E-03/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.00000E-02/ 9.00000E-01
+ >  wt/ wtmax =  2.82518E-01/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  1.34883E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   0/100 and rerr/rcvg =  0.00000E+00/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   0/100 and rerr/rcvg =  0.00000E+00/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   7/100 and rerr/rcvg =  3.11811E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 2/2147483647
+ >   t/  tmax =  2.00000E-03/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.00228E-02/ 9.00000E-01
+ >  wt/ wtmax =  5.39496E-01/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.30434E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.55769E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.55769E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  9.05418E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 3/2147483647
+ >   t/  tmax =  3.00000E-03/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.00459E-02/ 9.00000E-01
+ >  wt/ wtmax =  8.14965E-01/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.12222E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.56277E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.56277E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  9.94375E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 4/2147483647
+ >   t/  tmax =  4.00000E-03/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.00693E-02/ 9.00000E-01
+ >  wt/ wtmax =  1.07636E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.12511E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.57408E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.57408E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   6/100 and rerr/rcvg =  3.33751E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 5/2147483647
+ >   t/  tmax =  5.00000E-03/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.00929E-02/ 9.00000E-01
+ >  wt/ wtmax =  1.34552E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.12098E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.58920E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.58920E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.53157E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 6/2147483647
+ >   t/  tmax =  6.00000E-03/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.01168E-02/ 9.00000E-01
+ >  wt/ wtmax =  1.59733E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.11754E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.60355E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.60355E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.51604E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 7/2147483647
+ >   t/  tmax =  7.00000E-03/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.01410E-02/ 9.00000E-01
+ >  wt/ wtmax =  1.88564E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.11494E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.61706E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.61705E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.46201E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 8/2147483647
+ >   t/  tmax =  8.00000E-03/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.01654E-02/ 9.00000E-01
+ >  wt/ wtmax =  2.17521E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.11309E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.62966E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.62965E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.45247E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 9/2147483647
+ >   t/  tmax =  9.00000E-03/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.01900E-02/ 9.00000E-01
+ >  wt/ wtmax =  2.46914E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.11207E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.64127E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.64127E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.42424E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 10/2147483647
+ >   t/  tmax =  1.00000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.02148E-02/ 9.00000E-01
+ >  wt/ wtmax =  2.79741E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.11187E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.65182E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.65182E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.38862E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 11/2147483647
+ >   t/  tmax =  1.10000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.02398E-02/ 9.00000E-01
+ >  wt/ wtmax =  3.07558E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.11251E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.66120E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.66120E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.35517E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 12/2147483647
+ >   t/  tmax =  1.20000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.02650E-02/ 9.00000E-01
+ >  wt/ wtmax =  3.34962E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.11397E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.66932E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.66932E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.32525E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 13/2147483647
+ >   t/  tmax =  1.30000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.02904E-02/ 9.00000E-01
+ >  wt/ wtmax =  3.60643E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.11622E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.67608E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.67608E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.29803E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 14/2147483647
+ >   t/  tmax =  1.40000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.03159E-02/ 9.00000E-01
+ >  wt/ wtmax =  3.87665E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.11928E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.68137E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.68136E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.27322E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 15/2147483647
+ >   t/  tmax =  1.50000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.03415E-02/ 9.00000E-01
+ >  wt/ wtmax =  4.18425E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.12311E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.68508E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.68508E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.25100E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 16/2147483647
+ >   t/  tmax =  1.60000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.03672E-02/ 9.00000E-01
+ >  wt/ wtmax =  4.47112E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.12768E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.68713E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.68712E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.23127E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 17/2147483647
+ >   t/  tmax =  1.70000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.03930E-02/ 9.00000E-01
+ >  wt/ wtmax =  4.76002E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.13294E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.68740E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.68740E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.21434E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 18/2147483647
+ >   t/  tmax =  1.80000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.04189E-02/ 9.00000E-01
+ >  wt/ wtmax =  5.01560E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.13886E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.68582E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.68582E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.19969E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 19/2147483647
+ >   t/  tmax =  1.90000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.04449E-02/ 9.00000E-01
+ >  wt/ wtmax =  5.27035E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.14540E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.68230E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.68230E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.18694E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 20/2147483647
+ >   t/  tmax =  2.00000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.04709E-02/ 9.00000E-01
+ >  wt/ wtmax =  5.59622E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.15248E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.67678E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.67679E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.17589E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 21/2147483647
+ >   t/  tmax =  2.10000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.04970E-02/ 9.00000E-01
+ >  wt/ wtmax =  5.89647E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.16005E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.66920E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.66922E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.16597E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 22/2147483647
+ >   t/  tmax =  2.20000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.05230E-02/ 9.00000E-01
+ >  wt/ wtmax =  6.17329E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.16803E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.65954E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.65956E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.15680E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 23/2147483647
+ >   t/  tmax =  2.30000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.05491E-02/ 9.00000E-01
+ >  wt/ wtmax =  6.45137E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.17643E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.64777E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.64780E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.14811E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 24/2147483647
+ >   t/  tmax =  2.40000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.05751E-02/ 9.00000E-01
+ >  wt/ wtmax =  6.78956E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.18511E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.63391E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.63395E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.13945E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 25/2147483647
+ >   t/  tmax =  2.50000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.06011E-02/ 9.00000E-01
+ >  wt/ wtmax =  7.07870E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.19403E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.61798E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.61802E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.13068E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 26/2147483647
+ >   t/  tmax =  2.60000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.06270E-02/ 9.00000E-01
+ >  wt/ wtmax =  7.35266E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.20312E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.60004E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.60009E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.12173E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 27/2147483647
+ >   t/  tmax =  2.70000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.06528E-02/ 9.00000E-01
+ >  wt/ wtmax =  7.61787E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.21228E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.58015E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.58021E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.11272E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 28/2147483647
+ >   t/  tmax =  2.80000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.06786E-02/ 9.00000E-01
+ >  wt/ wtmax =  7.89670E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.22151E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.55842E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.55849E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.10357E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 29/2147483647
+ >   t/  tmax =  2.90000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.07042E-02/ 9.00000E-01
+ >  wt/ wtmax =  8.16542E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.23077E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.53498E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.53505E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.09439E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 30/2147483647
+ >   t/  tmax =  3.00000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.07298E-02/ 9.00000E-01
+ >  wt/ wtmax =  8.43315E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.23985E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.50996E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.51005E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.08547E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 31/2147483647
+ >   t/  tmax =  3.10000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.07552E-02/ 9.00000E-01
+ >  wt/ wtmax =  8.69582E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.24882E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.48354E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.48363E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.07666E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 32/2147483647
+ >   t/  tmax =  3.20000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.07804E-02/ 9.00000E-01
+ >  wt/ wtmax =  8.97018E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.25758E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.45591E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.45601E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.06819E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 33/2147483647
+ >   t/  tmax =  3.30000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.08054E-02/ 9.00000E-01
+ >  wt/ wtmax =  9.29570E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.26607E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.42727E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.42738E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.05988E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 34/2147483647
+ >   t/  tmax =  3.40000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.08303E-02/ 9.00000E-01
+ >  wt/ wtmax =  9.61662E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.27424E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.39784E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.39796E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.05183E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 35/2147483647
+ >   t/  tmax =  3.50000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.08550E-02/ 9.00000E-01
+ >  wt/ wtmax =  9.88171E+00/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.28210E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.36787E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.36798E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.04360E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 36/2147483647
+ >   t/  tmax =  3.60000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.08794E-02/ 9.00000E-01
+ >  wt/ wtmax =  1.01456E+01/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.28947E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.33758E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.33770E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.03514E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 37/2147483647
+ >   t/  tmax =  3.70000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.09036E-02/ 9.00000E-01
+ >  wt/ wtmax =  1.04388E+01/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.29636E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.30723E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.30735E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.02630E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 38/2147483647
+ >   t/  tmax =  3.80000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.09275E-02/ 9.00000E-01
+ >  wt/ wtmax =  1.07741E+01/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.30273E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.27707E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.27719E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.01658E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 39/2147483647
+ >   t/  tmax =  3.90000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.09512E-02/ 9.00000E-01
+ >  wt/ wtmax =  1.10842E+01/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.30855E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.24733E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.24745E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  8.00572E-06/ 1.00000E-05
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 40/2147483647
+ >   t/  tmax =  4.00000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.09746E-02/ 9.00000E-01
+ >  wt/ wtmax =  1.13838E+01/ 1.79769+308
+  
+  
+  
+  
+  
+  
+  
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.31369E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.21826E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.21837E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.99339E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 41/2147483647
+ >   t/  tmax =  4.10000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.09977E-02/ 9.00000E-01
+ >  wt/ wtmax =  1.16981E+01/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.31830E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.19006E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.19016E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.97954E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 42/2147483647
+ >   t/  tmax =  4.20000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.10205E-02/ 9.00000E-01
+ >  wt/ wtmax =  1.19771E+01/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.32227E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.16293E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.16303E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.96345E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 43/2147483647
+ >   t/  tmax =  4.30000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.10430E-02/ 9.00000E-01
+ >  wt/ wtmax =  1.22906E+01/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.32567E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.13705E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.13714E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.94520E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 44/2147483647
+ >   t/  tmax =  4.40000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.10651E-02/ 9.00000E-01
+ >  wt/ wtmax =  1.25571E+01/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.32831E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.11257E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.11264E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.92463E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 45/2147483647
+ >   t/  tmax =  4.50000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.10869E-02/ 9.00000E-01
+ >  wt/ wtmax =  1.28186E+01/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.33018E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.08958E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.08964E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.90151E-06/ 1.00000E-05
+  
+  
+  
+  
+  
+  
+  
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 46/2147483647
+ >   t/  tmax =  4.60000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.11083E-02/ 9.00000E-01
+ >  wt/ wtmax =  1.30961E+01/ 1.79769+308
+  
+  
+  
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.33146E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.06819E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.06823E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.87594E-06/ 1.00000E-05
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 47/2147483647
+ >   t/  tmax =  4.70000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.11293E-02/ 9.00000E-01
+ >  wt/ wtmax =  1.33691E+01/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.33217E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.04843E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.04845E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.48149E-06/ 1.00000E-05
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 48/2147483647
+ >   t/  tmax =  4.80000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.11500E-02/ 9.00000E-01
+ >  wt/ wtmax =  1.36229E+01/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.33213E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.03032E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.03033E-07/ 1.00000E-06
+Unstructured Hypre Linear Solver [        Pressure] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.24125E-06/ 1.00000E-05
+  
+Timetracker [UNNAMED_TIME] status
+ >  it/ itmax = 1/1
+ >   n/  nmax = 49/2147483647
+ >   t/  tmax =  4.90000E-02/ 1.79769+308
+ >  dt/ dtmax =  1.00000E-03/ 1.00000E-03
+ > cfl/cflmax =  4.11702E-02/ 9.00000E-01
+ >  wt/ wtmax =  1.39002E+01/ 1.79769+308
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   5/100 and rerr/rcvg =  7.33133E-08/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.01385E-07/ 1.00000E-06
+Structured HYPRE solver [        Velocity] for config [         channel] -> it/maxit =   4/100 and rerr/rcvg =  8.01384E-07/ 1.00000E-06
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
