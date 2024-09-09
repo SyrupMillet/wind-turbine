@@ -67,15 +67,56 @@ contains
       if (i.eq.pg%imax+1) isIn=.true.
    end function right_of_domain
 
+   function bottom_of_domain(pg,i,j,k) result(isIn)
+      use pgrid_class, only: pgrid
+      implicit none
+      class(pgrid), intent(in) :: pg
+      integer, intent(in) :: i,j,k
+      logical :: isIn
+      isIn=.false.
+      if (j.eq.pg%jmin) isIn=.true.
+   end function bottom_of_domain
+
+   function top_of_domain(pg,i,j,k) result(isIn)
+      use pgrid_class, only: pgrid
+      implicit none
+      class(pgrid), intent(in) :: pg
+      integer, intent(in) :: i,j,k
+      logical :: isIn
+      isIn=.false.
+      if (j.eq.pg%jmax+1) isIn=.true.
+   end function top_of_domain
+
+   function front_of_domain(pg,i,j,k) result(isIn)
+      use pgrid_class, only: pgrid
+      implicit none
+      class(pgrid), intent(in) :: pg
+      integer, intent(in) :: i,j,k
+      logical :: isIn
+      isIn=.false.
+      if (k.eq.pg%kmin) isIn=.true.
+   end function front_of_domain
+
+   function back_of_domain(pg,i,j,k) result(isIn)
+      use pgrid_class, only: pgrid
+      implicit none
+      class(pgrid), intent(in) :: pg
+      integer, intent(in) :: i,j,k
+      logical :: isIn
+      isIn=.false.
+      if (k.eq.pg%kmax+1) isIn=.true.
+   end function back_of_domain
+
    subroutine getSpecificVelocity()
-      use mpi_f08,  only: MPI_ALLREDUCE,MPI_SUM
+      use mpi_f08,  only: MPI_ALLREDUCE,MPI_SUM, MPI_INTEGER
       use parallel, only: MPI_REAL_WP
       implicit none
       integer :: i,j,k
       real(WP) :: U1_loc, U2_loc, U3_loc, U4_loc
       real(WP) :: P1_loc, P2_loc, P3_loc, P4_loc
       integer :: ierr
-      integer :: mycount, count
+      integer :: mycount1, mycount2, mycount3, mycount4
+      integer :: count1, count2, count3, count4
 
       integer :: rotordiskIndex
       integer,  dimension(3) :: ind
@@ -83,7 +124,7 @@ contains
       U1_loc = 0.0_WP ; U2_loc = 0.0_WP ; U3_loc = 0.0_WP ; U4_loc = 0.0_WP
       P1_loc = 0.0_WP ; P2_loc = 0.0_WP ; P3_loc = 0.0_WP ; P4_loc = 0.0_WP
 
-      mycount = 0
+      mycount1 = 0 ; mycount2 = 0 ; mycount3 = 0 ; mycount4 = 0
 
       ind = cfg%get_ijk_global(rd%center,[0,0,0])
       rotordiskIndex = ind(1)
@@ -91,45 +132,45 @@ contains
       do k=cfg%kmin_,cfg%kmax_
          do j=cfg%jmin_,cfg%jmax_
             do i=cfg%imin_,cfg%imax_
-               if (i == cfg%imin) then
-                  U1_loc = U1_loc + Ui(i,j,k)
-                  P1_loc = P1_loc + fs%P(i,j,k)
+
+               ! U1, ahead of the rotor disk
+               if ((cfg%xm(i).lt.(rd%center(1)-1.5_WP+cfg%dx(i))) .and. (cfg%xm(i).gt.(rd%center(1)-1.5_WP-cfg%dx(i)))) then
+                  if ((cfg%ym(j).lt.(rd%center(2)+2.5_WP*rd%maxR)) .and. (cfg%ym(j).gt.(rd%center(2)-2.5_WP*rd%maxR))) then
+                     U1_loc = U1_loc + Ui(i,j,k)
+                     P1_loc = P1_loc + fs%P(i,j,k)
+                     mycount1 = mycount1 + 1
+                  end if
                end if
 
-               if (i == cfg%imax) then
-                  U4_loc = U4_loc + Ui(i,j,k)
-                  P4_loc = P4_loc + fs%P(i,j,k)
-               end if
-
-               if (i == rotordiskIndex) then
-                  U2_loc = U2_loc + Ui(i-1,j,k)
-                  P2_loc = P2_loc + fs%P(i-1,j,k)
-                  U3_loc = U3_loc + Ui(i+1,j,k)
-                  P3_loc = P3_loc + fs%P(i+1,j,k)
-               end if
+               ! U4, behind the rotor disk
+               if ((cfg%xm(i).lt.(rd%center(1)+2.0_WP+cfg%dx(i))) .and. (cfg%xm(i).gt.(rd%center(1)+2.0_WP-cfg%dx(i)))) then
+                  if ((cfg%ym(j).lt.(rd%center(2)+4.0_WP*rd%maxR)) .and. (cfg%ym(j).gt.(rd%center(2)-4.0_WP*rd%maxR))) then
+                     U4_loc = U4_loc + Ui(i,j,k)
+                     P4_loc = P4_loc + fs%P(i,j,k)
+                     mycount4 = mycount4 + 1
+                  end if
+               end if   
 
             end do
          end do
       end do
 
-      do k=cfg%kmin_,cfg%kmax_
-         do j=cfg%jmin_,cfg%jmax_
-            i=cfg%imin_
-            if (cfg%VF(i,j,k) .gt. 0.0_WP) then
-               mycount = mycount + 1
-            end if
-         end do
-      end do
+      call MPI_ALLREDUCE(U1_loc, U1, 1, MPI_REAL_WP, MPI_SUM, cfg%comm, ierr)
+      call MPI_ALLREDUCE(U4_loc, U4, 1, MPI_REAL_WP, MPI_SUM, cfg%comm, ierr)
 
-      call MPI_ALLREDUCE(U1_loc, U1, 1, MPI_REAL_WP, MPI_SUM, cfg%comm, ierr) ; U1 = U1 / real(mycount,WP)
-      call MPI_ALLREDUCE(U2_loc, U2, 1, MPI_REAL_WP, MPI_SUM, cfg%comm, ierr) ; U2 = U2 / real(mycount,WP)
-      call MPI_ALLREDUCE(U3_loc, U3, 1, MPI_REAL_WP, MPI_SUM, cfg%comm, ierr) ; U3 = U3 / real(mycount,WP)
-      call MPI_ALLREDUCE(U4_loc, U4, 1, MPI_REAL_WP, MPI_SUM, cfg%comm, ierr) ; U4 = U4 / real(mycount,WP)
+      call MPI_ALLREDUCE(P1_loc, P1, 1, MPI_REAL_WP, MPI_SUM, cfg%comm, ierr)
+      call MPI_ALLREDUCE(P4_loc, P4, 1, MPI_REAL_WP, MPI_SUM, cfg%comm, ierr)
 
-      call MPI_ALLREDUCE(P1_loc, P1, 1, MPI_REAL_WP, MPI_SUM, cfg%comm, ierr) ; P1 = P1 / real(mycount,WP)
-      call MPI_ALLREDUCE(P2_loc, P2, 1, MPI_REAL_WP, MPI_SUM, cfg%comm, ierr) ; P2 = P2 / real(mycount,WP)
-      call MPI_ALLREDUCE(P3_loc, P3, 1, MPI_REAL_WP, MPI_SUM, cfg%comm, ierr) ; P3 = P3 / real(mycount,WP)
-      call MPI_ALLREDUCE(P4_loc, P4, 1, MPI_REAL_WP, MPI_SUM, cfg%comm, ierr) ; P4 = P4 / real(mycount,WP)
+      call MPI_ALLREDUCE(mycount1, count1, 1, MPI_INTEGER, MPI_SUM, cfg%comm, ierr)
+      call MPI_ALLREDUCE(mycount4, count4, 1, MPI_INTEGER, MPI_SUM, cfg%comm, ierr)
+
+      U1 = U1 / real(count1, WP)
+      U4 = U4 / real(count4, WP)
+
+      P1 = P1 / real(count1, WP)
+      P4 = P4 / real(count4, WP)
+
+
 
 
 
@@ -178,9 +219,12 @@ contains
          ! Create flow solver
          fs=incomp(cfg=cfg,name='NS solver')
 
-         call fs%add_bcond(name='inflow',type=clipped_neumann,locator=left_of_domain,face='x',dir=-1,canCorrect=.true. )
+         call fs%add_bcond(name='inflow',type=dirichlet,locator=left_of_domain,face='x',dir=-1,canCorrect=.false. )
          call fs%add_bcond(name='outflow',type=clipped_neumann,locator=right_of_domain,face='x',dir=+1,canCorrect=.true. )
-
+         call fs%add_bcond(name='bottom',type=clipped_neumann,locator=bottom_of_domain,face='y',dir=-1,canCorrect=.true. )
+         call fs%add_bcond(name='top',type=clipped_neumann,locator=top_of_domain,face='y',dir=+1,canCorrect=.true. )
+         ! call fs%add_bcond(name='front',type=clipped_neumann,locator=front_of_domain,face='z',dir=-1,canCorrect=.true. )
+         ! call fs%add_bcond(name='back',type=clipped_neumann,locator=back_of_domain,face='z',dir=+1,canCorrect=.true. )
 
          ! Assign constant viscosity
          call param_read('Dynamic viscosity',visc); fs%visc=visc
@@ -199,13 +243,13 @@ contains
 
 
 
-         fs%U=0.0_WP ; fs%V=0.0_WP ; fs%W=0.0_WP
+         fs%U=1.0_WP ; fs%V=0.0_WP ; fs%W=0.0_WP
          ! Apply all other boundary conditions 
-         ! call fs%get_bcond('inflow',mybc)
-         ! do n=1,mybc%itr%no_
-         !    i=mybc%itr%map(1,n); j=mybc%itr%map(2,n); k=mybc%itr%map(3,n)
-         !    fs%U(i,j,k)   = 1.0_WP
-         ! end do
+         call fs%get_bcond('inflow',mybc)
+         do n=1,mybc%itr%no_
+            i=mybc%itr%map(1,n); j=mybc%itr%map(2,n); k=mybc%itr%map(3,n)
+            fs%U(i,j,k)   = 1.0_WP
+         end do
          call fs%apply_bcond(time%t,time%dt)
 
          ! Calculate cell-centered velocities and divergence
@@ -368,21 +412,20 @@ contains
             call fs%get_dmomdt(resU,resV,resW)
 
             ! Add rotor disk momentum source terms
-            call rd%calculateForce(rho,Ui,Vi,Wi)    ! Get volumetric force
-
+            ! call rd%calculateForce(rho,Ui,Vi,Wi)    ! Get volumetric force
+            ! resU=resU+rd%forceX
+            ! resV=resV+rd%forceY
+            ! resW=resW+rd%forceZ
+            
+            ! Explicit Momentum source term
             index = cfg%get_ijk_global(rd%center,[0,0,0])
-
             do k=fs%cfg%kmin_,fs%cfg%kmax_
                do j=fs%cfg%jmin_,fs%cfg%jmax_
                   do i=fs%cfg%imin_,fs%cfg%imax_
-                     ! if(fs%umask(i,j,k).eq.0) resU(i,j,k)=resU(i,j,k)+sum(fs%itpr_x(:,i,j,k)*rd%forceX(i-1:i,j,k))
-                     ! if(fs%vmask(i,j,k).eq.0) resV(i,j,k)=resV(i,j,k)+sum(fs%itpr_y(:,i,j,k)*rd%forceY(i,j-1:j,k))
-                     ! if(fs%wmask(i,j,k).eq.0) resW(i,j,k)=resW(i,j,k)+sum(fs%itpr_z(:,i,j,k)*rd%forceZ(i,j,k-1:k))
+
                      if (i == index(1)) then
-                        if (j == index(2)) then
-                           if (k == index(3)) then
+                        if ((cfg%ym(j).le.(rd%center(2)+rd%maxR)) .and. (cfg%ym(j).ge.(rd%center(2)-rd%maxR))) then
                               resU(i,j,k) = resU(i,j,k) + 100.0_WP
-                           end if
                         end if
                      end if
                      
@@ -406,11 +449,11 @@ contains
             fs%W=2.0_WP*fs%W-fs%Wold+resW
 
             ! Apply other boundary conditions on the resulting fields
-            ! call fs%get_bcond('inflow',mybc)
-            ! do n=1,mybc%itr%no_
-            !    i=mybc%itr%map(1,n); j=mybc%itr%map(2,n); k=mybc%itr%map(3,n)
-            !    fs%U(i,j,k)   = 1.0_WP
-            ! end do
+            call fs%get_bcond('inflow',mybc)
+            do n=1,mybc%itr%no_
+               i=mybc%itr%map(1,n); j=mybc%itr%map(2,n); k=mybc%itr%map(3,n)
+               fs%U(i,j,k)   = 1.0_WP
+            end do
             call fs%apply_bcond(time%t,time%dt)
 
             ! Solve Poisson equation
