@@ -38,6 +38,7 @@ module simulation
 
    !> Fluid viscosity
    real(WP) :: visc
+   real(WP) :: inlet_velocity
 
    real(WP) :: U1, U2, U3, U4
    real(WP) :: P1, P2, P3, P4
@@ -211,18 +212,21 @@ contains
       create_and_initialize_flow_solver: block
          use hypre_uns_class, only: gmres_amg
          use hypre_str_class, only: pcg_pfmg
-         use incomp_class,      only: clipped_neumann, dirichlet
+         use incomp_class,      only: clipped_neumann, dirichlet, convective, neumann, inletOutlet
          use incomp_class, only: bcond
+         use param, only: param_read
          integer :: i,j,k,n
          type(bcond), pointer :: mybc
+
+         call param_read("inlet velocity",inlet_velocity)
 
          ! Create flow solver
          fs=incomp(cfg=cfg,name='NS solver')
 
          call fs%add_bcond(name='inflow',type=dirichlet,locator=left_of_domain,face='x',dir=-1,canCorrect=.false. )
-         call fs%add_bcond(name='outflow',type=clipped_neumann,locator=right_of_domain,face='x',dir=+1,canCorrect=.true. )
-         call fs%add_bcond(name='bottom',type=clipped_neumann,locator=bottom_of_domain,face='y',dir=-1,canCorrect=.true. )
-         call fs%add_bcond(name='top',type=clipped_neumann,locator=top_of_domain,face='y',dir=+1,canCorrect=.true. )
+         call fs%add_bcond(name='outflow',type=inletOutlet,locator=right_of_domain,face='x',dir=+1,canCorrect=.true.,backflow_velocity=0.1_WP)
+         call fs%add_bcond(name='bottom',type=neumann,locator=bottom_of_domain,face='y',dir=-1,canCorrect=.true. )
+         call fs%add_bcond(name='top',type=neumann,locator=top_of_domain,face='y',dir=+1,canCorrect=.true. )
          ! call fs%add_bcond(name='front',type=clipped_neumann,locator=front_of_domain,face='z',dir=-1,canCorrect=.true. )
          ! call fs%add_bcond(name='back',type=clipped_neumann,locator=back_of_domain,face='z',dir=+1,canCorrect=.true. )
 
@@ -243,12 +247,12 @@ contains
 
 
 
-         fs%U=1.0_WP ; fs%V=0.0_WP ; fs%W=0.0_WP
+         fs%U=inlet_velocity ; fs%V=0.0_WP ; fs%W=0.0_WP
          ! Apply all other boundary conditions 
          call fs%get_bcond('inflow',mybc)
          do n=1,mybc%itr%no_
             i=mybc%itr%map(1,n); j=mybc%itr%map(2,n); k=mybc%itr%map(3,n)
-            fs%U(i,j,k)   = 1.0_WP
+            fs%U(i,j,k)   = inlet_velocity
          end do
          call fs%apply_bcond(time%t,time%dt)
 
@@ -413,25 +417,25 @@ contains
 
             ! Add rotor disk momentum source terms
             call rd%calculateForce(rho,Ui,Vi,Wi)    ! Get volumetric force
-            resU=resU+rd%forceX
+            ! resU=resU+rd%forceX
             ! resV=resV+rd%forceY
             ! resW=resW+rd%forceZ
             
             ! Explicit Momentum source term
-            ! index = cfg%get_ijk_global(rd%center,[0,0,0])
-            ! do k=fs%cfg%kmin_,fs%cfg%kmax_
-            !    do j=fs%cfg%jmin_,fs%cfg%jmax_
-            !       do i=fs%cfg%imin_,fs%cfg%imax_
+            index = cfg%get_ijk_global(rd%center,[0,0,0])
+            do k=fs%cfg%kmin_,fs%cfg%kmax_
+               do j=fs%cfg%jmin_,fs%cfg%jmax_
+                  do i=fs%cfg%imin_,fs%cfg%imax_
 
-            !          if (i == index(1)) then
-            !             if ((cfg%ym(j).le.(rd%center(2)+rd%maxR)) .and. (cfg%ym(j).ge.(rd%center(2)-rd%maxR))) then
-            !                   resU(i,j,k) = resU(i,j,k) + 100.0_WP
-            !             end if
-            !          end if
+                     if (i == index(1)) then
+                        if ((cfg%ym(j).le.(rd%center(2)+rd%maxR)) .and. (cfg%ym(j).ge.(rd%center(2)-rd%maxR))) then
+                              resU(i,j,k) = resU(i,j,k) + 1000.0_WP*abs(cfg%dy(j))
+                        end if
+                     end if
                      
-            !       end do
-            !    end do
-            ! end do
+                  end do
+               end do
+            end do
 
 
             ! Assemble explicit residual
@@ -452,7 +456,7 @@ contains
             call fs%get_bcond('inflow',mybc)
             do n=1,mybc%itr%no_
                i=mybc%itr%map(1,n); j=mybc%itr%map(2,n); k=mybc%itr%map(3,n)
-               fs%U(i,j,k)   = 1.0_WP
+               fs%U(i,j,k)   = inlet_velocity
             end do
             call fs%apply_bcond(time%t,time%dt)
 
