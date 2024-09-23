@@ -224,6 +224,7 @@ contains
          time=timetracker(amRoot=cfg%amRoot)
          call param_read('Max timestep size',time%dtmax)
          call param_read('Max cfl number',time%cflmax)
+         call param_read('Max time',time%tmax)
          time%dt=time%dtmax
          time%itmax=1
       end block initialize_timetracker
@@ -328,61 +329,61 @@ contains
 
 
       ! Create output-related objects
-      create_output: block
-         integer :: i,j,k
-         real(WP) :: x_disk, x_min, x_max
-         integer :: i_start, i_end
-         integer :: index(3)
-         integer :: count
-         character(len=16) :: xsname
+      ! create_output: block
+      !    integer :: i,j,k
+      !    real(WP) :: x_disk, x_min, x_max
+      !    integer :: i_start, i_end
+      !    integer :: index(3)
+      !    integer :: count
+      !    character(len=16) :: xsname
 
-         x_disk = rd%center(1)
-         x_min = x_disk - 4.0_WP*rd%maxR
-         x_max = x_disk + 4.0_WP*rd%maxR
+      !    x_disk = rd%center(1)
+      !    x_min = x_disk - 4.0_WP*rd%maxR
+      !    x_max = x_disk + 4.0_WP*rd%maxR
 
-         ! Create x positions for monitoring
-         index = cfg%get_ijk_global([x_min,0.0_WP,0.0_WP],[0,0,0])
-         i_start = index(1)
-         index = cfg%get_ijk_global([x_max,0.0_WP,0.0_WP],[0,0,0])
-         i_end = index(1)
+      !    ! Create x positions for monitoring
+      !    index = cfg%get_ijk_global([x_min,0.0_WP,0.0_WP],[0,0,0])
+      !    i_start = index(1)
+      !    index = cfg%get_ijk_global([x_max,0.0_WP,0.0_WP],[0,0,0])
+      !    i_end = index(1)
 
-         count = 0
+      !    count = 0
 
-         do i=i_start,i_end
-            if (mod(i,2).eq.0) then
-               count = count + 1
-            end if
-         end do
+      !    do i=i_start,i_end
+      !       if (mod(i,2).eq.0) then
+      !          count = count + 1
+      !       end if
+      !    end do
 
-         numPoints = count
-         allocate(xs(count)) ; allocate(velos(count)) ; allocate(pressures(count))
+      !    numPoints = count
+      !    allocate(xs(count)) ; allocate(velos(count)) ; allocate(pressures(count))
 
-         count = 0
-         do i=i_start,i_end
-            if (mod(i,2).eq.0) then
-               count = count + 1
-               xs(count) = cfg%xm(i)
-            end if
-         end do
+      !    count = 0
+      !    do i=i_start,i_end
+      !       if (mod(i,2).eq.0) then
+      !          count = count + 1
+      !          xs(count) = cfg%xm(i)
+      !       end if
+      !    end do
 
-         ! create monitor file
-         velofile=monitor(fs%cfg%amRoot,'velocity')
-         call velofile%add_column(time%n,'Timestep number')
-         call velofile%add_column(time%t,'Time')
-         do i=1,numPoints
-            write(xsname, '(F0.3)') xs(i)
-            call velofile%add_column(velos(i),trim(adjustl(xsname)))
-         end do
+      !    ! create monitor file
+      !    velofile=monitor(fs%cfg%amRoot,'velocity')
+      !    call velofile%add_column(time%n,'Timestep number')
+      !    call velofile%add_column(time%t,'Time')
+      !    do i=1,numPoints
+      !       write(xsname, '(F0.3)') xs(i)
+      !       call velofile%add_column(velos(i),trim(adjustl(xsname)))
+      !    end do
 
-         pressfile=monitor(fs%cfg%amRoot,'pressure')
-         call pressfile%add_column(time%n,'Timestep number')
-         call pressfile%add_column(time%t,'Time')
-         do i=1,numPoints
-            write(xsname, '(F0.3)') xs(i)
-            call pressfile%add_column(pressures(i),trim(adjustl(xsname)))
-         end do
+      !    pressfile=monitor(fs%cfg%amRoot,'pressure')
+      !    call pressfile%add_column(time%n,'Timestep number')
+      !    call pressfile%add_column(time%t,'Time')
+      !    do i=1,numPoints
+      !       write(xsname, '(F0.3)') xs(i)
+      !       call pressfile%add_column(pressures(i),trim(adjustl(xsname)))
+      !    end do
 
-      end block create_output
+      ! end block create_output
 
 
       ! Add Ensight output
@@ -553,7 +554,7 @@ contains
 
          end do
 
-         call getSpecificVelocity()
+         ! call getSpecificVelocity()
 
          ! Recompute interpolated velocity and divergence
          call fs%interp_vel(Ui,Vi,Wi)
@@ -567,8 +568,8 @@ contains
          call mfile%write()
          call cflfile%write()
          call rdfile%write()  
-         call velofile%write()
-         call pressfile%write()
+         ! call velofile%write()
+         ! call pressfile%write()
 
       end do
 

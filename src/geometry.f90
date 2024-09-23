@@ -103,11 +103,15 @@ contains
             end do
          end if
 
-         zper = .true.
-         if (nz .eq. 1) zper = .false.
+         zper = .false.
+         if (nz .eq. 1) zper = .true.
 
          ! General serial grid object
          grid=sgrid(coord=cartesian,no=2,x=x,y=y,z=z,xper=.false.,yper=.false.,zper=zper,name='channel')
+
+
+         deallocate(dx); deallocate(dy); deallocate(dz)
+
       end block create_grid
 
       ! Create a config from that grid on our entire group
