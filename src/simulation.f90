@@ -4,6 +4,7 @@ module simulation
    use geometry,          only: cfg
    use hypre_uns_class,   only: hypre_uns
    use hypre_str_class,   only: hypre_str
+   use ddadi_class,      only: ddadi
    use incomp_class,      only: incomp
    use timetracker_class, only: timetracker
    use ensight_class,     only: ensight
@@ -17,8 +18,8 @@ module simulation
    !> Single-phase incompressible flow solver and corresponding time tracker
    type(incomp),      public :: fs
    type(timetracker), public :: time
-   type(hypre_uns),     public :: ps
-   type(hypre_str),     public :: vs
+   type(hypre_str),     public :: ps
+   type(ddadi),     public :: vs
    type(rotorDisk),      public :: rd
    type(blade),          public :: bl
 
@@ -27,7 +28,7 @@ module simulation
    type(event)   :: ens_evt
 
    !> Simulation monitor file
-   type(monitor) :: mfile,cflfile,rdfile
+   type(monitor) :: mfile,cflfile,rdfile, velofile, pressfile, xsfile
 
    public :: simulation_init,simulation_run,simulation_final
 
@@ -40,8 +41,10 @@ module simulation
    real(WP) :: visc
    real(WP) :: inlet_velocity
 
-   real(WP) :: U1, U2, U3, U4
-   real(WP) :: P1, P2, P3, P4
+   integer :: numPoints
+   real(WP), dimension(:), allocatable :: xs
+   real(WP), dimension(:), allocatable :: velos
+   real(WP), dimension(:), allocatable :: pressures
 
 
 contains
@@ -112,69 +115,90 @@ contains
       use mpi_f08,  only: MPI_ALLREDUCE,MPI_SUM, MPI_INTEGER
       use parallel, only: MPI_REAL_WP
       implicit none
-      integer :: i,j,k
-      real(WP) :: U1_loc, U2_loc, U3_loc, U4_loc
-      real(WP) :: P1_loc, P2_loc, P3_loc, P4_loc
+      integer :: i,j,k, iter
+      integer :: index(3)
+      real(WP) :: myFlowRate, FlowRate, tempFlowRate
+      real(WP) :: ypos, zpos
       integer :: ierr
-      integer :: mycount1, mycount2, mycount3, mycount4
-      integer :: count1, count2, count3, count4
+      real(WP) :: myVel, myPressure,myArea, Vel, Pressure, Area
+      real(WP) :: radius
 
-      integer :: rotordiskIndex
-      integer,  dimension(3) :: ind
+      index = cfg%get_ijk_global(rd%center,[0,0,0])
 
-      U1_loc = 0.0_WP ; U2_loc = 0.0_WP ; U3_loc = 0.0_WP ; U4_loc = 0.0_WP
-      P1_loc = 0.0_WP ; P2_loc = 0.0_WP ; P3_loc = 0.0_WP ; P4_loc = 0.0_WP
-
-      mycount1 = 0 ; mycount2 = 0 ; mycount3 = 0 ; mycount4 = 0
-
-      ind = cfg%get_ijk_global(rd%center,[0,0,0])
-      rotordiskIndex = ind(1)
-
+      ! Calculate the flow rate across the rotor disk
+      myFlowRate = 0.0_WP
       do k=cfg%kmin_,cfg%kmax_
          do j=cfg%jmin_,cfg%jmax_
             do i=cfg%imin_,cfg%imax_
-
-               ! U1, ahead of the rotor disk
-               if ((cfg%xm(i).lt.(rd%center(1)-1.5_WP+cfg%dx(i))) .and. (cfg%xm(i).gt.(rd%center(1)-1.5_WP-cfg%dx(i)))) then
-                  if ((cfg%ym(j).lt.(rd%center(2)+2.5_WP*rd%maxR)) .and. (cfg%ym(j).gt.(rd%center(2)-2.5_WP*rd%maxR))) then
-                     U1_loc = U1_loc + Ui(i,j,k)
-                     P1_loc = P1_loc + fs%P(i,j,k)
-                     mycount1 = mycount1 + 1
+               if (i == index(1)) then
+                  ypos = cfg%ym(j) ; zpos = cfg%zm(k)
+                  ypos = ypos - rd%center(2) ; zpos = zpos - rd%center(3)
+                  if ((ypos**2 + zpos**2) .le. (rd%maxR)**2) then
+                     myFlowRate  = myFlowRate + cfg%dy(j)*cfg%dz(k)*fs%U(i,j,k)
                   end if
                end if
-
-               ! U4, behind the rotor disk
-               if ((cfg%xm(i).lt.(rd%center(1)+2.0_WP+cfg%dx(i))) .and. (cfg%xm(i).gt.(rd%center(1)+2.0_WP-cfg%dx(i)))) then
-                  if ((cfg%ym(j).lt.(rd%center(2)+4.0_WP*rd%maxR)) .and. (cfg%ym(j).gt.(rd%center(2)-4.0_WP*rd%maxR))) then
-                     U4_loc = U4_loc + Ui(i,j,k)
-                     P4_loc = P4_loc + fs%P(i,j,k)
-                     mycount4 = mycount4 + 1
-                  end if
-               end if   
-
             end do
          end do
       end do
+      ! synchronize the flow rate
+      call MPI_ALLREDUCE(myFlowRate,FlowRate,1,MPI_REAL_WP,MPI_SUM,cfg%comm,ierr)
+      
+      
+      ! Go through the points and get the average velocity and pressure
+      do iter=1,numPoints
 
-      call MPI_ALLREDUCE(U1_loc, U1, 1, MPI_REAL_WP, MPI_SUM, cfg%comm, ierr)
-      call MPI_ALLREDUCE(U4_loc, U4, 1, MPI_REAL_WP, MPI_SUM, cfg%comm, ierr)
+         index = cfg%get_ijk_global([xs(iter),0.0_WP,0.0_WP],[0,0,0])
 
-      call MPI_ALLREDUCE(P1_loc, P1, 1, MPI_REAL_WP, MPI_SUM, cfg%comm, ierr)
-      call MPI_ALLREDUCE(P4_loc, P4, 1, MPI_REAL_WP, MPI_SUM, cfg%comm, ierr)
+         ! Get the radius so that the flowrate is the same as the rotor disk
+         radius = cfg%min_meshsize
+         i = index(1)
 
-      call MPI_ALLREDUCE(mycount1, count1, 1, MPI_INTEGER, MPI_SUM, cfg%comm, ierr)
-      call MPI_ALLREDUCE(mycount4, count4, 1, MPI_INTEGER, MPI_SUM, cfg%comm, ierr)
+         tempFlowRate = 0.0_WP
+         myFlowRate = 0.0_WP
+         
+         do while (tempFlowRate .lt. FlowRate)
+            radius = radius + cfg%min_meshsize
+            tempFlowRate = 0.0_WP
+            myFlowRate = 0.0_WP
+            do k=cfg%kmin_,cfg%kmax_
+               do j=cfg%jmin_,cfg%jmax_
+                     ypos = cfg%ym(j) ; zpos = cfg%zm(k)
+                     ypos = ypos - rd%center(2) ; zpos = zpos - rd%center(3)
+                     if ((ypos**2 + zpos**2) .le. radius**2) then
+                        myFlowRate = myFlowRate + cfg%dy(j)*cfg%dz(k)*fs%U(i,j,k)
+                     end if
+               end do
+            end do
+            call MPI_ALLREDUCE(myFlowRate,tempFlowRate,1,MPI_REAL_WP,MPI_SUM,cfg%comm,ierr)
+         end do
 
-      U1 = U1 / real(count1, WP)
-      U4 = U4 / real(count4, WP)
+         myVel = 0.0_WP
+         myArea = 0.0_WP
+         myPressure = 0.0_WP
 
-      P1 = P1 / real(count1, WP)
-      P4 = P4 / real(count4, WP)
+         do k=cfg%kmin_,cfg%kmax_
+            do j=cfg%jmin_,cfg%jmax_
 
+               ypos = cfg%ym(j) ; zpos = cfg%zm(k)
+               ypos = ypos - rd%center(2) ; zpos = zpos - rd%center(3)
+               if ((ypos**2 + zpos**2) .le. radius**2) then
+                     myVel = myVel + Ui(i,j,k)*cfg%dy(j)*cfg%dz(k)
+                     myPressure = myPressure + fs%P(i,j,k)*cfg%dy(j)*cfg%dz(k)
+                     myArea = myArea + cfg%dy(j)*cfg%dz(k)
+               end if
 
+            end do
+         end do
 
+         ! synchronize the velocity
+         call MPI_ALLREDUCE(myVel,Vel,1,MPI_REAL_WP,MPI_SUM,cfg%comm,ierr)
+         call MPI_ALLREDUCE(myPressure,Pressure,1,MPI_REAL_WP,MPI_SUM,cfg%comm,ierr)
+         call MPI_ALLREDUCE(myArea,Area,1,MPI_REAL_WP,MPI_SUM,cfg%comm,ierr)
 
+         velos(iter) = Vel/Area
+         pressures(iter) = Pressure/Area
 
+      end do
    end subroutine getSpecificVelocity
 
 
@@ -191,10 +215,7 @@ contains
          allocate(Ui  (cfg%imino_:cfg%imaxo_,cfg%jmino_:cfg%jmaxo_,cfg%kmino_:cfg%kmaxo_))
          allocate(Vi  (cfg%imino_:cfg%imaxo_,cfg%jmino_:cfg%jmaxo_,cfg%kmino_:cfg%kmaxo_))
          allocate(Wi  (cfg%imino_:cfg%imaxo_,cfg%jmino_:cfg%jmaxo_,cfg%kmino_:cfg%kmaxo_))
-
          allocate(rho(cfg%imino_:cfg%imaxo_,cfg%jmino_:cfg%jmaxo_,cfg%kmino_:cfg%kmaxo_))
-
-
       end block allocate_work_arrays
 
 
@@ -210,9 +231,8 @@ contains
 
       ! Create a single-phase flow solver without bconds
       create_and_initialize_flow_solver: block
-         use hypre_uns_class, only: gmres_amg
-         use hypre_str_class, only: pcg_pfmg
-         use incomp_class,      only: clipped_neumann, dirichlet, convective, neumann, inletOutlet
+         use hypre_str_class, only: pcg_pfmg2
+         use incomp_class,      only: clipped_neumann, dirichlet, slip, inletOutlet, neumann
          use incomp_class, only: bcond
          use param, only: param_read
          integer :: i,j,k,n
@@ -224,22 +244,22 @@ contains
          fs=incomp(cfg=cfg,name='NS solver')
 
          call fs%add_bcond(name='inflow',type=dirichlet,locator=left_of_domain,face='x',dir=-1,canCorrect=.false. )
-         call fs%add_bcond(name='outflow',type=inletOutlet,locator=right_of_domain,face='x',dir=+1,canCorrect=.true.,backflow_velocity=0.1_WP)
-         call fs%add_bcond(name='bottom',type=neumann,locator=bottom_of_domain,face='y',dir=-1,canCorrect=.true. )
-         call fs%add_bcond(name='top',type=neumann,locator=top_of_domain,face='y',dir=+1,canCorrect=.true. )
-         ! call fs%add_bcond(name='front',type=clipped_neumann,locator=front_of_domain,face='z',dir=-1,canCorrect=.true. )
-         ! call fs%add_bcond(name='back',type=clipped_neumann,locator=back_of_domain,face='z',dir=+1,canCorrect=.true. )
+         call fs%add_bcond(name='outflow',type=clipped_neumann,locator=right_of_domain,face='x',dir=+1,canCorrect=.true.)
+         call fs%add_bcond(name='bottom',type=slip,locator=bottom_of_domain,face='y',dir=-1,canCorrect=.false. )
+         call fs%add_bcond(name='top',type=slip,locator=top_of_domain,face='y',dir=+1,canCorrect=.false.)
+         call fs%add_bcond(name='front',type=slip,locator=front_of_domain,face='z',dir=-1,canCorrect=.false. )
+         call fs%add_bcond(name='back',type=slip,locator=back_of_domain,face='z',dir=+1,canCorrect=.false. )
 
          ! Assign constant viscosity
          call param_read('Dynamic viscosity',visc); fs%visc=visc
          ! Assign constant density
          call param_read('Density',fs%rho)
          ! Configure pressure solver
-         ps=hypre_uns(cfg=cfg,name='Pressure',method=gmres_amg,nst=7)
+         ps=hypre_str(cfg=cfg,name='Pressure',method=pcg_pfmg2,nst=7)
          call param_read('Pressure iteration',ps%maxit)
          call param_read('Pressure tolerance',ps%rcvg)
          ! Configure implicit velocity solver
-         vs=hypre_str(cfg=cfg,name='Velocity',method=pcg_pfmg,nst=7)
+         vs=ddadi(cfg=cfg,name='Implicit velocity',nst=7)
          call param_read('Implicit iteration',vs%maxit)
          call param_read('Implicit tolerance',vs%rcvg)
          ! Setup the solver
@@ -261,6 +281,7 @@ contains
          call fs%get_div()
          ! Compute MFR through all boundary conditions
          call fs%get_mfr()
+         call fs%correct_mfr()
       end block create_and_initialize_flow_solver
 
       ! Create a rotor disk
@@ -304,6 +325,64 @@ contains
 
 
       end block create_and_initialize_rotorDisk
+
+
+      ! Create output-related objects
+      create_output: block
+         integer :: i,j,k
+         real(WP) :: x_disk, x_min, x_max
+         integer :: i_start, i_end
+         integer :: index(3)
+         integer :: count
+         character(len=16) :: xsname
+
+         x_disk = rd%center(1)
+         x_min = x_disk - 4.0_WP*rd%maxR
+         x_max = x_disk + 4.0_WP*rd%maxR
+
+         ! Create x positions for monitoring
+         index = cfg%get_ijk_global([x_min,0.0_WP,0.0_WP],[0,0,0])
+         i_start = index(1)
+         index = cfg%get_ijk_global([x_max,0.0_WP,0.0_WP],[0,0,0])
+         i_end = index(1)
+
+         count = 0
+
+         do i=i_start,i_end
+            if (mod(i,2).eq.0) then
+               count = count + 1
+            end if
+         end do
+
+         numPoints = count
+         allocate(xs(count)) ; allocate(velos(count)) ; allocate(pressures(count))
+
+         count = 0
+         do i=i_start,i_end
+            if (mod(i,2).eq.0) then
+               count = count + 1
+               xs(count) = cfg%xm(i)
+            end if
+         end do
+
+         ! create monitor file
+         velofile=monitor(fs%cfg%amRoot,'velocity')
+         call velofile%add_column(time%n,'Timestep number')
+         call velofile%add_column(time%t,'Time')
+         do i=1,numPoints
+            write(xsname, '(F0.3)') xs(i)
+            call velofile%add_column(velos(i),trim(adjustl(xsname)))
+         end do
+
+         pressfile=monitor(fs%cfg%amRoot,'pressure')
+         call pressfile%add_column(time%n,'Timestep number')
+         call pressfile%add_column(time%t,'Time')
+         do i=1,numPoints
+            write(xsname, '(F0.3)') xs(i)
+            call pressfile%add_column(pressures(i),trim(adjustl(xsname)))
+         end do
+
+      end block create_output
 
 
       ! Add Ensight output
@@ -362,15 +441,8 @@ contains
          call rdfile%add_column(rd%Thrust,'Thrust')
          call rdfile%add_column(rd%Torque,'Torque')
          call rdfile%add_column(rd%Power,'Power')
-         call rdfile%add_column(U1,'U1')
-         call rdfile%add_column(U2,'U2')
-         call rdfile%add_column(U3,'U3')
-         call rdfile%add_column(U4,'U4')
-         call rdfile%add_column(P1,'P1')
-         call rdfile%add_column(P2,'P2')
-         call rdfile%add_column(P3,'P3')
-         call rdfile%add_column(P4,'P4')
          call rdfile%write()
+         ! Create velocity monitor
          
 
       end block create_monitor
@@ -417,25 +489,25 @@ contains
 
             ! Add rotor disk momentum source terms
             call rd%calculateForce(rho,Ui,Vi,Wi)    ! Get volumetric force
-            ! resU=resU+rd%forceX
-            ! resV=resV+rd%forceY
-            ! resW=resW+rd%forceZ
+            resU=resU+rd%forceX
+            resV=resV+rd%forceY
+            resW=resW+rd%forceZ
             
             ! Explicit Momentum source term
-            index = cfg%get_ijk_global(rd%center,[0,0,0])
-            do k=fs%cfg%kmin_,fs%cfg%kmax_
-               do j=fs%cfg%jmin_,fs%cfg%jmax_
-                  do i=fs%cfg%imin_,fs%cfg%imax_
+            ! index = cfg%get_ijk_global(rd%center,[0,0,0])
+            ! do k=fs%cfg%kmin_,fs%cfg%kmax_
+            !    do j=fs%cfg%jmin_,fs%cfg%jmax_
+            !       do i=fs%cfg%imin_,fs%cfg%imax_
 
-                     if (i == index(1)) then
-                        if ((cfg%ym(j).le.(rd%center(2)+rd%maxR)) .and. (cfg%ym(j).ge.(rd%center(2)-rd%maxR))) then
-                              resU(i,j,k) = resU(i,j,k) + 1000.0_WP*abs(cfg%dy(j))
-                        end if
-                     end if
+            !          if (i == index(1)) then
+            !             if ((cfg%ym(j).le.(rd%center(2)+rd%maxR)) .and. (cfg%ym(j).ge.(rd%center(2)-rd%maxR))) then
+            !                   resU(i,j,k) = resU(i,j,k) + 1000.0_WP*abs(cfg%dy(j))
+            !             end if
+            !          end if
                      
-                  end do
-               end do
-            end do
+            !       end do
+            !    end do
+            ! end do
 
 
             ! Assemble explicit residual
@@ -461,6 +533,7 @@ contains
             call fs%apply_bcond(time%t,time%dt)
 
             ! Solve Poisson equation
+            call fs%get_mfr()
             call fs%correct_mfr()
             call fs%get_div()
             fs%psolv%rhs=-fs%cfg%vol*fs%div*fs%rho/time%dt
@@ -494,6 +567,8 @@ contains
          call mfile%write()
          call cflfile%write()
          call rdfile%write()  
+         call velofile%write()
+         call pressfile%write()
 
       end do
 
